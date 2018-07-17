@@ -137,7 +137,12 @@ Tidy the results:
 fgseaResTidy <- fgseaRes %>%
   as_tibble() %>%
   arrange(desc(NES))
-fgseaResTidy
+
+# Show in a nice table:
+fgseaResTidy %>% 
+  dplyr::select(-leadingEdge, -ES, -nMoreExtreme) %>% 
+  arrange(padj) %>% 
+  DT::datatable()
 ```
 
 Plot the normalized enrichment scores. Color the bar indicating whether or not the pathway was significant:
